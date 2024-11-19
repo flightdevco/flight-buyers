@@ -63,7 +63,7 @@ RegisterNetEvent('flight-buyers:server:Sell', function(data, quantity)
     local src = source
     local itemExists = false
     for k, v in pairs(Config.Shops[data.buyerId].Items) do
-        if v.name == data.item then
+        if v.item == data.item then
             itemExists = true
             if v.price ~= data.price then
                 TriggerClientEvent('ox_lib:notify', src,
