@@ -61,6 +61,22 @@ end
 RegisterNetEvent('flight-buyers:server:Sell', function(data, quantity)
     while not source do Wait(10) end
     local src = source
+    local itemExists = false
+    for k, v in pairs(Config.Shops[data.buyerId].Items) do
+        if v.name == data.item then
+            itemExists = true
+            break
+        end
+    end
+    if not itemExists then
+        TriggerClientEvent('ox_lib:notify', src,
+            {
+                title = "Buyers",
+                description = "Nice Try, please teach me how you did it",
+                type = "error"
+            })
+        return
+    end
     if SHOPS[data.location] and SHOPS[data.location][data.item] and SHOPS[data.location][data.item].limit then
         local soldCount = SHOPS[data.location][data.item].soldCount
         if data.limit.limit <= (soldCount + quantity) and (soldCount + quantity) >= quantity then
@@ -74,15 +90,16 @@ RegisterNetEvent('flight-buyers:server:Sell', function(data, quantity)
             return
         end
     end
-    if not Inventory({ src = src, item = data.item, action = "has", quantity = quantity}) then
-        TriggerClientEvent('ox_lib:notify', src, { title = "Buyers", description = "You don't have enough quantity", type = "error" })
+    if not Inventory({ src = src, item = data.item, action = "has", quantity = quantity }) then
+        TriggerClientEvent('ox_lib:notify', src,
+            { title = "Buyers", description = "You don't have enough quantity", type = "error" })
         return
     end
     local price = data.price * quantity
-    exports.ox_inventory:RemoveItem(src, data.item, quantity)
+    Inventory({ src = src, item = data.item, quantity = quantity, action = "remove" })
     AddMoney(src, "cash", price)
-    if Config.Shops[data.buyerId].Dispatch.toggle and math.random(1, 100) <= Config.Shops[data.buyerId].Dispatch.chance then 
-        TriggerClientEvent("flight-buyers:client:Dispatch", src) 
+    if Config.Shops[data.buyerId].Dispatch.toggle and math.random(1, 100) <= Config.Shops[data.buyerId].Dispatch.chance then
+        TriggerClientEvent("flight-buyers:client:Dispatch", src)
     end
     TriggerClientEvent('ox_lib:notify', src, { title = "Buyers", description = "Confirmed", type = "success" })
     if not SHOPS[data.location] then

@@ -81,7 +81,7 @@ CreateThread(function()
                 SetEntityInvincible(ped, true)
                 SetBlockingOfNonTemporaryEvents(ped, true)
                 TaskStartScenarioInPlace(ped, v.Ped.scenarion, 0, true)
-                createTarget(ped, v, m)
+                createTarget(ped, v, m, k)
             end
             location = nil
         end
