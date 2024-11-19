@@ -65,6 +65,15 @@ RegisterNetEvent('flight-buyers:server:Sell', function(data, quantity)
     for k, v in pairs(Config.Shops[data.buyerId].Items) do
         if v.name == data.item then
             itemExists = true
+            if v.price ~= data.price then
+                TriggerClientEvent('ox_lib:notify', src,
+                    {
+                        title = "Buyers",
+                        description = "Price mismatch, please try again.",
+                        type = "error"
+                    })
+                return
+            end
             break
         end
     end
