@@ -8,6 +8,8 @@ This resource doesnt have direct support. But you can use our discord's discussi
 
 ## Our Links
 
-Our Website: [flightdev.co]("https://flightdev.co")
-Our FiveM Store: [fivem.flightdev.co]("https://fivem.flightdev.co")
-Our Discord: [discord.gg/flightdev]("https://discord.gg/flightdev")
+Our Website: [flightdev.co](https://flightdev.co)
+
+Our FiveM Store: [fivem.flightdev.co](https://fivem.flightdev.co)
+
+Our Discord: [discord.gg/flightdev](https://discord.gg/flightdev)
