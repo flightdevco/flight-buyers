@@ -1,6 +1,6 @@
 # Flight Buyers
 
-Flight Buyers is a free simple ped selling script where you can sell specific items to (Highly Configurable) Supports QbCore, Qbox, ESX.
+Flight Buyers is a free FiveM ped selling script where you can sell specific items to (Highly Configurable) Supports QbCore, Qbox, ESX.
 
 ## Support
 
